@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pw_farm/next_page.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key key,  this.title}) : super(key: key);
   final String title;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -47,6 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
             return Column(
               children:[
                 ListTile(
+                  onTap: (){
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=> NextPage(titleList[i])));
+                  },
                   leading: const Icon(Icons.vpn_key),
                   title: Text(titleList[i]),
                 ),
@@ -54,10 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
               ]
 
             );
-    },
+      },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: (){
+          titleList.add("aa");
+          print(titleList);
+          setState(() {
+          }
+          );
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
